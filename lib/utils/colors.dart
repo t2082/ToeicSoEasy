@@ -5,6 +5,8 @@ class AppColors {
   static const Color deepBlue = Color(0xFF410FA3);
   static const Color orange = Color(0xFFF76400);
   static const Color dark05 = Color.fromARGB(5, 0, 0, 0);
+  static const Color dark10 = Color.fromARGB(10, 0, 0, 0);
+  static const Color dark20 = Color.fromARGB(20, 0, 0, 0);
   static const Color grayDark50 = Color.fromARGB(50, 101, 104, 114);
   static const Color red = Color(0xFFD6185D);
   static const Color blue = Color(0xFF5B7BFE);

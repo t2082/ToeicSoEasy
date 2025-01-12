@@ -2,16 +2,15 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:toeicsoeasy/presentation/auth/pages/login_page.dart';
-import 'package:toeicsoeasy/services/navigator/navigation_service.dart';
+import 'package:toeicsoeasy/common/app_navigator.dart';
+import 'package:toeicsoeasy/core/route/app_route.dart';
 import 'package:toeicsoeasy/utils/colors.dart';
 import 'package:toeicsoeasy/utils/font_size.dart';
 import 'package:toeicsoeasy/widgets/carousel/carousel_dual_widget.dart';
-import 'package:toeicsoeasy/widgets/common/text/paragraph_1.dart';
+import 'package:toeicsoeasy/widgets/richtext/richtext_widget.dart';
 
 class OnboardingPage extends StatelessWidget {
-  final NavigationService _navigationService = NavigationService();
-  OnboardingPage({super.key});
+  const OnboardingPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,18 +31,20 @@ class OnboardingPage extends StatelessWidget {
               ),
             ),
             _button(),
-            paragraph_1(
-              'Already account ?',
-              TextStyle(
-                  fontSize: FontSize.caption, fontWeight: FontWeight.w400),
-              'Log in',
-              TextStyle(
-                  fontSize: FontSize.caption, fontWeight: FontWeight.w700),
-              context,
-              () {
-                _navigationService.navigateTo('/login');
+            RichtextWidget(
+              onPressed: () {
+                AppNavigator().pushNamed(context, AppRoute.login);
               },
-            )
+              title: "Already account ? ",
+              style: TextStyle(
+                  fontSize: FontSize.body, fontWeight: FontWeight.w400),
+              children: [
+                TextSpan(
+                    text: "Login",
+                    style: TextStyle(
+                        fontSize: FontSize.body, fontWeight: FontWeight.w700))
+              ],
+            ),
           ],
         ),
       ),
@@ -132,9 +133,10 @@ class OnboardingPage extends StatelessWidget {
           child: Text(
             'Choose a language',
             style: TextStyle(
-                fontSize: FontSize.subtitle,
-                fontWeight: FontWeight.w700,
-                color: AppColors.backgroundColor),
+              fontSize: FontSize.subtitle,
+              fontWeight: FontWeight.w700,
+              color: AppColors.backgroundColor,
+            ),
           ),
         ),
       ),
