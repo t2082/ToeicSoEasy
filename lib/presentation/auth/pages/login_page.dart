@@ -2,17 +2,17 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:toeicsoeasy/common/app_navigator.dart';
-import 'package:toeicsoeasy/core/route/app_route.dart';
-import 'package:toeicsoeasy/presentation/auth/pages/create_an_account_page.dart';
-import 'package:toeicsoeasy/presentation/auth/widgets/social_media_item.dart';
-import 'package:toeicsoeasy/presentation/auth/widgets/text_center_devider.dart';
-import 'package:toeicsoeasy/utils/colors.dart';
-import 'package:toeicsoeasy/utils/font_size.dart';
-import 'package:toeicsoeasy/widgets/appbar/appbar_widget.dart';
-import 'package:toeicsoeasy/widgets/button/button_widget.dart';
-import 'package:toeicsoeasy/widgets/richtext/richtext_widget.dart';
-import 'package:toeicsoeasy/widgets/textfield/text_field_widget.dart';
+import 'package:toeicsoeasy/core/contants/spacer.dart';
+import '../../../common/app_navigator.dart';
+import '../../../core/route/app_route.dart';
+import '../../../presentation/auth/widgets/social_media_item.dart';
+import '../../../presentation/auth/widgets/text_center_devider.dart';
+import '../../../core/utils/colors.dart';
+import '../../../core/utils/font_size.dart';
+import '../../../widgets/appbar/appbar_widget.dart';
+import '../../../widgets/button/button_widget.dart';
+import '../../../widgets/richtext/richtext_widget.dart';
+import '../../../widgets/textfield/text_field_widget.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -35,7 +35,9 @@ class LoginPage extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
+        padding: EdgeInsets.symmetric(
+            horizontal: AppSpacer.normalPadding,
+            vertical: AppSpacer.normalPadding),
         child: Column(
           spacing: 5.h,
           children: [

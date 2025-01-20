@@ -1,20 +1,30 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:toeicsoeasy/common/app_navigator.dart';
-import 'package:toeicsoeasy/core/route/app_route.dart';
-import 'package:toeicsoeasy/presentation/auth/pages/login_page.dart';
-import 'package:toeicsoeasy/presentation/auth/widgets/social_media_item.dart';
-import 'package:toeicsoeasy/presentation/auth/widgets/text_center_devider.dart';
-import 'package:toeicsoeasy/utils/colors.dart';
-import 'package:toeicsoeasy/utils/font_size.dart';
-import 'package:toeicsoeasy/widgets/appbar/appbar_widget.dart';
-import 'package:toeicsoeasy/widgets/button/button_widget.dart';
-import 'package:toeicsoeasy/widgets/richtext/richtext_widget.dart';
-import 'package:toeicsoeasy/widgets/textfield/text_field_widget.dart';
+import 'package:toeicsoeasy/common/bloc/button/button_state.dart';
+import 'package:toeicsoeasy/common/bloc/button/button_state_cubit.dart';
+import 'package:toeicsoeasy/core/contants/spacer.dart';
+import 'package:toeicsoeasy/core/service_locator.dart';
+import 'package:toeicsoeasy/data/auth/models/signup_user_req_params.dart';
+import 'package:toeicsoeasy/domain/auth/usecases/signup_usecase.dart';
+import 'package:toeicsoeasy/widgets/snackbar/snackbar_widget.dart';
+import '../../../common/app_navigator.dart';
+import '../../../core/route/app_route.dart';
+import '../../../core/utils/colors.dart';
+import '../../../core/utils/font_size.dart';
+import '../../../widgets/appbar/appbar_widget.dart';
+import '../../../widgets/button/button_widget.dart';
+import '../../../widgets/richtext/richtext_widget.dart';
+import '../../../widgets/textfield/text_field_widget.dart';
+import '../widgets/social_media_item.dart';
+import '../widgets/text_center_devider.dart';
 
 class ChooseAPasswordPage extends StatelessWidget {
-  const ChooseAPasswordPage({super.key});
-
+  ChooseAPasswordPage({super.key});
+  final passwordController = TextEditingController();
+  final retypePasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,15 +36,46 @@ class ChooseAPasswordPage extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
-        child: Column(
-          spacing: 50,
-          children: [
-            _imageContainer(),
-            _form(context),
-          ],
+    return BlocProvider(
+      create: (context) => ButtonStateCubit(),
+      child: BlocListener<ButtonStateCubit, ButtonState>(
+        listener: (context, state) {
+          if (state is ButtonSuccessState) {
+            AppNavigator().pushNamed(context, AppRoute.signupSuccess);
+            SnackBarWidget.show(
+                context: context,
+                title: 'Success',
+                message: 'Your account has been created successfully !',
+                type: SnackBarType.success);
+          } else if (state is ButtonErrorState) {
+            SnackBarWidget.show(
+                context: context,
+                title: 'Error',
+                message: state.message,
+                type: SnackBarType.failed);
+          }
+          // else {
+          //   SnackBarWidget.show(
+          //       context: context,
+          //       title: 'Error',
+          //       message:
+          //           'Something when wrong and this action could not be completed !',
+          //       type: SnackBarType.failed);
+          // }
+        },
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: AppSpacer.normalPadding,
+                vertical: AppSpacer.normalPadding),
+            child: Column(
+              spacing: 50,
+              children: [
+                _imageContainer(),
+                _form(context),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -69,6 +110,7 @@ class ChooseAPasswordPage extends StatelessWidget {
               obscureText: true,
               suffixIcon: Icon(Icons.remove_red_eye_outlined),
               suffixIconColor: AppColors.grayDark50,
+              controller: passwordController,
             ),
             TextFieldWidget(
               title: 'Confirm Password',
@@ -84,22 +126,31 @@ class ChooseAPasswordPage extends StatelessWidget {
             SizedBox(
               height: 20.h,
             ),
-            ButtonWidget(
-              text: 'Create Account',
-              textStyle: TextStyle(
-                color: AppColors.backgroundColor,
-                fontSize: FontSize.button,
-                fontWeight: FontWeight.w700,
-              ),
-              borderRadius: 12,
-              height: 56,
-              textColor: AppColors.backgroundColor,
-              backgroundColor: AppColors.buttonColor,
-              // isLoading: false,
-              onPressed: () {
-                // log('hehe', name: 'akr');
-              },
-            ),
+            BlocBuilder<ButtonStateCubit, ButtonState>(
+                builder: (context, state) {
+              return ButtonWidget(
+                text: 'Create Account',
+                textStyle: TextStyle(
+                  color: AppColors.backgroundColor,
+                  fontSize: FontSize.button,
+                  fontWeight: FontWeight.w700,
+                ),
+                borderRadius: 12,
+                height: 56,
+                textColor: AppColors.backgroundColor,
+                backgroundColor: AppColors.buttonColor,
+                isLoading: state is ButtonLoadingState,
+                onPressed: () {
+                  context.read<ButtonStateCubit>().excute(
+                        SignupReqParams(
+                            email: emailController.text,
+                            password: passwordController.text),
+                        servicelocator<SignupUseCase>(),
+                      );
+                  // Thiếu Bloc Provicer
+                },
+              );
+            }),
             orDivider(),
             socialMediaBuild(),
             Center(

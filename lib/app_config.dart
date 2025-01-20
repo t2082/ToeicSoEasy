@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:toeicsoeasy/configs/register_app_route.dart';
-import 'package:toeicsoeasy/presentation/splash/bloc/splash_cubit.dart';
-import 'package:toeicsoeasy/presentation/splash/pages/splash_page.dart';
+import '../../../configs/register_app_route.dart';
+import '../../../presentation/splash/bloc/splash_cubit.dart';
+import '../../../presentation/splash/pages/splash_page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

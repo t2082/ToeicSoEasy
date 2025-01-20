@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toeicsoeasy/core/route/app_route.dart';
-import 'package:toeicsoeasy/presentation/splash/bloc/splash_cubit.dart';
-import 'package:toeicsoeasy/presentation/splash/bloc/splash_state.dart';
-import 'package:toeicsoeasy/utils/colors.dart';
-import 'package:toeicsoeasy/utils/font_size.dart';
+
+import '../../../core/route/app_route.dart';
+import '../../../core/utils/colors.dart';
+import '../../../core/utils/font_size.dart';
+import '../bloc/splash_cubit.dart';
+import '../bloc/splash_state.dart';
+
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});

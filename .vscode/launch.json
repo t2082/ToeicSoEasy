@@ -1,0 +1,46 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Flutter (Default Mode)",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart"
+        },
+        {
+            "name": "Flutter (Debug Mode)",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "flutterMode": "debug" // Gỡ lỗi ứng dụng, Assertions, Hot Reload, Kích thước lớn
+        },
+        {
+            "name": "Flutter (Profile Mode)",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "flutterMode": "profile" // Phân tích hiệu suất, Tối ưu 1 phần, Assertions, Kích thước trung bình
+        },
+        {
+            "name": "Flutter (Release Mode)",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "flutterMode": "release" // Phát hành, Tối ưu hóa hiệu suất, Kích thước nhỏ
+        },
+        {
+            "name": "Flutter (Web Server)",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "deviceId": "web-server"
+        },
+        {
+            "name": "Flutter (Chrome)",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "deviceId": "chrome"
+        }
+    ]
+}

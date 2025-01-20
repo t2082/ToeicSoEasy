@@ -54,10 +54,18 @@ class _CarouselDualWidgetState extends State<CarouselDualWidget> {
 
     if (widget.isConnectChildren) {
       _firstPageController.addListener(() {
-        if (_firstPageController.page != _secondPageController.page) {
+        if (_secondPageController.page != _firstPageController.page) {
           _secondPageController.jumpTo(_firstPageController.position.pixels);
         }
       });
+
+      // _secondPageController.addListener(() {
+      //   if (_isFirstPageViewScrolling) {
+      //     if (_secondPageController.page != _firstPageController.page) {
+      //       _firstPageController.jumpTo(_secondPageController.position.pixels);
+      //     }
+      //   }
+      // });
     }
 
     if (widget.autoPlay) {
@@ -106,7 +114,6 @@ class _CarouselDualWidgetState extends State<CarouselDualWidget> {
             onPageChanged: (index) {
               setState(() {
                 _currentFirstPage = index;
-                if (widget.isConnectChildren) {}
               });
             },
             itemCount: widget.firstChildren.length,
@@ -138,16 +145,12 @@ class _CarouselDualWidgetState extends State<CarouselDualWidget> {
           height: widget.secondHeight,
           child: PageView.builder(
             controller: _secondPageController,
-            physics: widget.isConnectChildren
-                ? const NeverScrollableScrollPhysics()
-                : null,
             onPageChanged: (index) {
               setState(() {
-                if (widget.isConnectChildren) {
-                  _currentFirstPage = index;
-                }
+                _currentFirstPage = index;
               });
             },
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: widget.secondChildren.length,
             itemBuilder: (context, index) {
               return widget.secondChildren[index];

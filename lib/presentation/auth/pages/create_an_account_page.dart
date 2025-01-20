@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:toeicsoeasy/common/app_navigator.dart';
-import 'package:toeicsoeasy/core/route/app_route.dart';
-import 'package:toeicsoeasy/presentation/auth/pages/choose_a_password_page.dart';
-import 'package:toeicsoeasy/presentation/auth/pages/login_page.dart';
-import 'package:toeicsoeasy/presentation/auth/widgets/social_media_item.dart';
-import 'package:toeicsoeasy/presentation/auth/widgets/text_center_devider.dart';
-import 'package:toeicsoeasy/utils/colors.dart';
-import 'package:toeicsoeasy/utils/font_size.dart';
-import 'package:toeicsoeasy/widgets/appbar/appbar_widget.dart';
-import 'package:toeicsoeasy/widgets/button/button_widget.dart';
-import 'package:toeicsoeasy/widgets/richtext/richtext_widget.dart';
-import 'package:toeicsoeasy/widgets/textfield/text_field_widget.dart';
+import 'package:toeicsoeasy/core/contants/spacer.dart';
+import '../../../common/app_navigator.dart';
+import '../../../core/route/app_route.dart';
+import '../../../presentation/auth/widgets/social_media_item.dart';
+import '../../../presentation/auth/widgets/text_center_devider.dart';
+import '../../../core/utils/colors.dart';
+import '../../../core/utils/font_size.dart';
+import '../../../widgets/appbar/appbar_widget.dart';
+import '../../../widgets/button/button_widget.dart';
+import '../../../widgets/richtext/richtext_widget.dart';
+import '../../../widgets/textfield/text_field_widget.dart';
 
 class CreateAnAccountPage extends StatelessWidget {
   const CreateAnAccountPage({super.key});
@@ -20,8 +19,13 @@ class CreateAnAccountPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar:
-          AppBarWidget(title: 'Register', backgroundColor: AppColors.deepBlue),
+      appBar: AppBarWidget(
+        title: 'Register',
+        backgroundColor: AppColors.deepBlue,
+        onBackPressed: () {
+          AppNavigator().popAndPushNamed(context, AppRoute.onboarding);
+        },
+      ),
       body: _buildBody(context),
     );
   }
@@ -29,7 +33,9 @@ class CreateAnAccountPage extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
+        padding: EdgeInsets.symmetric(
+            horizontal: AppSpacer.normalPadding,
+            vertical: AppSpacer.normalPadding),
         child: Column(
           spacing: 50,
           children: [
@@ -58,7 +64,7 @@ class CreateAnAccountPage extends StatelessWidget {
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 2.h,
+          spacing: 3.h,
           children: [
             TextFieldWidget(
               title: 'First Name',
@@ -79,36 +85,35 @@ class CreateAnAccountPage extends StatelessWidget {
             TextFieldWidget(
               title: 'Email Address',
               titleColor: AppColors.textPrimaryColor,
-              placeholder: 'Your email address',
+              placeholder: 'example@domain.com',
               placeholderColor: AppColors.textSecondaryColor,
               radius: 16.0,
               fillColor: AppColors.dark10,
             ),
-            SizedBox(
-              height: 2.w,
-            ),
-            ButtonWidget(
-              text: 'Continue',
-              textStyle: TextStyle(
-                color: AppColors.backgroundColor,
-                fontSize: FontSize.button,
-                fontWeight: FontWeight.w700,
+            Padding(
+              padding: EdgeInsets.only(top: 3.h),
+              child: ButtonWidget(
+                text: 'Continue',
+                textStyle: TextStyle(
+                  color: AppColors.backgroundColor,
+                  fontSize: FontSize.button,
+                  fontWeight: FontWeight.w700,
+                ),
+                borderRadius: 12,
+                height: 56,
+                textColor: AppColors.backgroundColor,
+                backgroundColor: AppColors.buttonColor,
+                onPressed: () {
+                  AppNavigator().pushNamed(context, AppRoute.chooseAPassword);
+                },
               ),
-              borderRadius: 12,
-              height: 56,
-              textColor: AppColors.backgroundColor,
-              backgroundColor: AppColors.buttonColor,
-              // isLoading: false,
-              onPressed: () {
-                AppNavigator().pushNamed(context, AppRoute.chooseAPassword);
-              },
             ),
             orDivider(),
             socialMediaBuild(),
             Center(
               child: RichtextWidget(
                 onPressed: () {
-                  AppNavigator().pop(context);
+                  AppNavigator().pushNamed(context, AppRoute.login);
                 },
                 title: "Are you member ? ",
                 style: TextStyle(

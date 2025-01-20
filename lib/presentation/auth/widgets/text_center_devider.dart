@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toeicsoeasy/utils/colors.dart';
+import '../../../core/utils/colors.dart';
 
 Widget orDivider() {
   return Row(

@@ -1,13 +1,12 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:toeicsoeasy/common/app_navigator.dart';
-import 'package:toeicsoeasy/core/route/app_route.dart';
-import 'package:toeicsoeasy/utils/colors.dart';
-import 'package:toeicsoeasy/utils/font_size.dart';
-import 'package:toeicsoeasy/widgets/carousel/carousel_dual_widget.dart';
-import 'package:toeicsoeasy/widgets/richtext/richtext_widget.dart';
+
+import '../../../common/app_navigator.dart';
+import '../../../core/route/app_route.dart';
+import '../../../core/utils/colors.dart';
+import '../../../core/utils/font_size.dart';
+import '../../../widgets/carousel/carousel_dual_widget.dart';
+import '../../../widgets/richtext/richtext_widget.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -15,37 +14,40 @@ class OnboardingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 45, horizontal: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          spacing: 5.h,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                spacing: 5.h,
+      body: SingleChildScrollView(
+        child: Padding(
+          // padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+          padding: EdgeInsets.fromLTRB(7.w, 20.h, 7.w, 0.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            spacing: 5.h,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  spacing: 5.h,
+                  children: [
+                    _carouser(),
+                  ],
+                ),
+              ),
+              _button(context),
+              RichtextWidget(
+                onPressed: () {
+                  AppNavigator().pushNamed(context, AppRoute.login);
+                },
+                title: "Already an account ? ",
+                style: TextStyle(
+                    fontSize: FontSize.body, fontWeight: FontWeight.w400),
                 children: [
-                  _carouser(),
+                  TextSpan(
+                      text: "Log in",
+                      style: TextStyle(
+                          fontSize: FontSize.body, fontWeight: FontWeight.w700))
                 ],
               ),
-            ),
-            _button(),
-            RichtextWidget(
-              onPressed: () {
-                AppNavigator().pushNamed(context, AppRoute.login);
-              },
-              title: "Already account ? ",
-              style: TextStyle(
-                  fontSize: FontSize.body, fontWeight: FontWeight.w400),
-              children: [
-                TextSpan(
-                    text: "Login",
-                    style: TextStyle(
-                        fontSize: FontSize.body, fontWeight: FontWeight.w700))
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -57,6 +59,7 @@ class OnboardingPage extends StatelessWidget {
       secondHeight: 15.h,
       spacing: 3.h,
       autoPlay: true,
+      activeIndicatorColor: AppColors.orange,
       firstChildren: [
         _buildCarouselItem(),
         _buildCarouselItem(),
@@ -121,17 +124,18 @@ class OnboardingPage extends StatelessWidget {
     );
   }
 
-  Widget _button() {
+  Widget _button(BuildContext context) {
     return GestureDetector(
-      onTap: () => {log('OnClickButtonChangeLanguage', name: "onboarding")},
+      onTap: () =>
+          {AppNavigator().pushNamed(context, AppRoute.createAnAccount)},
       child: Container(
-        height: 50,
+        height: 56,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             color: AppColors.buttonColor),
         child: Center(
           child: Text(
-            'Choose a language',
+            'Get Started Now',
             style: TextStyle(
               fontSize: FontSize.subtitle,
               fontWeight: FontWeight.w700,
