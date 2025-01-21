@@ -1,9 +1,9 @@
 import 'package:get_it/get_it.dart';
 import 'package:toeicsoeasy/core/network/dio/api_services.dart';
-import 'package:toeicsoeasy/data/auth/repository/auth_repository_impl.dart';
-import 'package:toeicsoeasy/data/auth/source/auth_api_services.dart';
-import 'package:toeicsoeasy/domain/auth/repository/auth_repository.dart';
-import 'package:toeicsoeasy/domain/auth/usecases/signup_usecase.dart';
+import 'package:toeicsoeasy/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:toeicsoeasy/features/auth/data/datasources/auth_api_services.dart';
+import 'package:toeicsoeasy/features/auth/domain/repositories/auth_repository.dart';
+import 'package:toeicsoeasy/features/auth/domain/usecases/signup_usecase.dart';
 
 // registerSingleton đăng ký một Singleton duy nhất trong source
 

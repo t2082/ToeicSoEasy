@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../../common/app_navigator.dart';
+import '../../../core/route/app_navigator.dart';
 import '../../../core/route/app_route.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/font_size.dart';
-import '../../../widgets/carousel/carousel_dual_widget.dart';
-import '../../../widgets/richtext/richtext_widget.dart';
+import '../../../core/widgets/carousel/carousel_dual_widget.dart';
+import '../../../core/widgets/richtext/richtext_widget.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});

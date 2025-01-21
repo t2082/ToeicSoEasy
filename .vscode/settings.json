@@ -1,0 +1,107 @@
+{
+    "folder-color.pathColors": [
+        {
+            "folderPath": "toeicsoeasy\\lib\\main.dart\\",
+            "badge": "😀",
+            "color": "foldercolorizer.color_0000ff"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\",
+            "color": "foldercolorizer.color_ffcc00"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\presentation\\",
+            "badge": "👁️",
+            "color": "foldercolorizer.color_33ffcc"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\widgets\\",
+            "color": "foldercolorizer.color_222222"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\presentation\\auth\\bloc\\",
+            "badge": "📦"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\domain\\auth\\entities\\",
+            "badge": "👾",
+            "color": "foldercolorizer.color_33cccc"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\domain\\",
+            "color": "foldercolorizer.color_33ffcc"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\domain\\readme\\",
+            "color": "foldercolorizer.color_ffcc00"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\domain\\auth\\",
+            "color": "foldercolorizer.color_33cccc"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\domain\\other_feature_domain\\",
+            "color": "foldercolorizer.color_333333"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\domain\\auth\\entities\\user.dart\\",
+            "badge": "A1"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\domain\\auth\\repositories\\auth_repository.dart\\",
+            "badge": "A1"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\domain\\auth\\usecases\\signup_usecase.dart\\",
+            "badge": "A1"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\presentation\\bottomNavigationBar\\",
+            "color": "foldercolorizer.color_222222"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\presentation\\homePage\\",
+            "color": "foldercolorizer.color_222222"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\presentation\\notFound\\",
+            "color": "foldercolorizer.color_222222"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\presentation\\onboarding\\",
+            "color": "foldercolorizer.color_222222"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\presentation\\splash\\",
+            "color": "foldercolorizer.color_222222"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\presentation\\auth\\",
+            "color": "foldercolorizer.color_33cccc"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\app_config.dart\\",
+            "color": "foldercolorizer.color_0000ff"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\data\\other\\",
+            "color": "foldercolorizer.color_333333"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\data\\",
+            "color": "foldercolorizer.color_66cccc"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\data\\auth\\models\\signup_user_req_params.dart\\",
+            "badge": "A2"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\data\\auth\\repositories\\auth_repository_impl.dart\\",
+            "badge": "A2"
+        },
+        {
+            "folderPath": "toeicsoeasy\\lib\\data\\auth\\datasources\\auth_api_services.dart\\",
+            "badge": "A2"
+        }
+    ]
+}

@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:toeicsoeasy/app_config.dart';
+import 'package:toeicsoeasy/core/configs/app_config.dart';
 import 'package:toeicsoeasy/core/service_locator.dart';
 
 import 'core/route/app_route.dart';
