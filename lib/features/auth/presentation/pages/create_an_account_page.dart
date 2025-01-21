@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:toeicsoeasy/core/contants/spacer.dart';
+import 'package:toeicsoeasy/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:toeicsoeasy/features/auth/presentation/bloc/auth_event.dart';
 import '../../../../core/route/app_navigator.dart';
 import '../../../../core/route/app_route.dart';
 import '../widgets/social_media_item.dart';
@@ -60,6 +63,9 @@ class CreateAnAccountPage extends StatelessWidget {
   }
 
   Widget _form(BuildContext context) {
+    final TextEditingController firstNameController = TextEditingController();
+    final TextEditingController lastNameController = TextEditingController();
+    final TextEditingController emailController = TextEditingController();
     return Column(
       children: [
         Column(
@@ -73,6 +79,7 @@ class CreateAnAccountPage extends StatelessWidget {
               placeholderColor: AppColors.textSecondaryColor,
               radius: 16.0,
               fillColor: AppColors.dark10,
+              controller: firstNameController,
             ),
             TextFieldWidget(
               title: 'Last Name',
@@ -81,6 +88,7 @@ class CreateAnAccountPage extends StatelessWidget {
               placeholderColor: AppColors.textSecondaryColor,
               radius: 16.0,
               fillColor: AppColors.dark10,
+              controller: lastNameController,
             ),
             TextFieldWidget(
               title: 'Email Address',
@@ -89,6 +97,7 @@ class CreateAnAccountPage extends StatelessWidget {
               placeholderColor: AppColors.textSecondaryColor,
               radius: 16.0,
               fillColor: AppColors.dark10,
+              controller: emailController,
             ),
             Padding(
               padding: EdgeInsets.only(top: 3.h),
@@ -104,6 +113,11 @@ class CreateAnAccountPage extends StatelessWidget {
                 textColor: AppColors.backgroundColor,
                 backgroundColor: AppColors.buttonColor,
                 onPressed: () {
+                  final email = emailController.text.trim();
+                  // context.read<AuthBloc>().add(CreateAnAccountSubmitted(
+                  //     firstName: firstNameController.text.trim(),
+                  //     lastName: lastNameController.text.trim(),
+                  //     email: email));
                   AppNavigator().pushNamed(context, AppRoute.chooseAPassword);
                 },
               ),

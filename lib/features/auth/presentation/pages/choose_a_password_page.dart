@@ -10,6 +10,7 @@ import 'package:toeicsoeasy/core/service_locator.dart';
 import 'package:toeicsoeasy/features/auth/data/models/signup_user_req_params.dart';
 import 'package:toeicsoeasy/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:toeicsoeasy/core/widgets/snackbar/snackbar_widget.dart';
+import 'package:toeicsoeasy/features/auth/presentation/bloc/auth_bloc.dart';
 import '../../../../core/route/app_navigator.dart';
 import '../../../../core/route/app_route.dart';
 import '../../../../core/utils/colors.dart';
@@ -22,9 +23,8 @@ import '../widgets/social_media_item.dart';
 import '../widgets/text_center_devider.dart';
 
 class ChooseAPasswordPage extends StatelessWidget {
-  ChooseAPasswordPage({super.key});
-  final passwordController = TextEditingController();
-  final retypePasswordController = TextEditingController();
+  const ChooseAPasswordPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,6 +94,8 @@ class ChooseAPasswordPage extends StatelessWidget {
   }
 
   Widget _form(BuildContext context) {
+    final _passwordController = TextEditingController();
+    final _retypePasswordController = TextEditingController();
     return Column(
       children: [
         Column(
@@ -110,7 +112,7 @@ class ChooseAPasswordPage extends StatelessWidget {
               obscureText: true,
               suffixIcon: Icon(Icons.remove_red_eye_outlined),
               suffixIconColor: AppColors.grayDark50,
-              controller: passwordController,
+              controller: _passwordController,
             ),
             TextFieldWidget(
               title: 'Confirm Password',
@@ -122,6 +124,7 @@ class ChooseAPasswordPage extends StatelessWidget {
               obscureText: true,
               suffixIcon: Icon(Icons.remove_red_eye_outlined),
               suffixIconColor: AppColors.grayDark50,
+              controller: _retypePasswordController,
             ),
             SizedBox(
               height: 20.h,
@@ -141,12 +144,26 @@ class ChooseAPasswordPage extends StatelessWidget {
                 backgroundColor: AppColors.buttonColor,
                 isLoading: state is ButtonLoadingState,
                 onPressed: () {
-                  context.read<ButtonStateCubit>().excute(
-                        SignupReqParams(
-                            email: passwordController.text,
-                            password: passwordController.text),
-                        servicelocator<SignupUseCase>(),
-                      );
+                  final password = _passwordController.text.trim();
+                  final repassword = _retypePasswordController.text.trim();
+                  final state = context.read<AuthBloc>().state;
+
+                  // log(state.firstName.toString());
+                  if (password == repassword) {
+                    context.read<ButtonStateCubit>().excute(
+                          SignupReqParams(
+                              email: _passwordController.text,
+                              password: _passwordController.text),
+                          servicelocator<SignupUseCase>(),
+                        );
+                  } else {
+                    SnackBarWidget.show(
+                        context: context,
+                        title: 'Error',
+                        message: 'Password not match !',
+                        type: SnackBarType.failed);
+                  }
+
                   // Thiếu Bloc Provicer
                 },
               );
